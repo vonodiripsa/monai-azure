@@ -22,7 +22,7 @@ Click on the buttons below depending on your goal. It will open in Azure Portal 
 
 | Button | Description |
 | :-- | :-- |
-| [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fvonodiripsa%2Fmonai-azure%2Fmain%2Fmlops%2Farm%2F%2Fmonai_test1.json) | Deploy a completely open sandbox to allow you to try things out in an eyes-on environment. This setup is intended only for demo purposes. The data is still accessible by the users of your subscription when opening the storage accounts, and data exfiltration is possible. |
+| [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fvonodiripsa%2Fmonai-azure%2Fmain%2Fmlops%2Farm%2Fmonai_test1.json) | Deploy a completely open sandbox to allow you to try things out in an eyes-on environment. This setup is intended only for demo purposes. The data is still accessible by the users of your subscription when opening the storage accounts, and data exfiltration is possible. |
 
 > Notes:
 >
