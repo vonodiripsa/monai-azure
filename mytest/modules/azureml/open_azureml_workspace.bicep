@@ -18,7 +18,7 @@ param machineLearningName string = 'aml-${baseName}'
 
 // optional parameters
 @description('Machine learning workspace display name')
-param machineLearningFriendlyName string = 'Sandbox workspace'
+param machineLearningFriendlyName string = 'Monai test workspace'
 
 @description('Machine learning workspace description')
 param machineLearningDescription string = 'An open AzureML workspace with no specific security settings.'
