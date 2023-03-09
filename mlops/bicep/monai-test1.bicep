@@ -30,15 +30,15 @@ targetScope = 'resourceGroup'
 param demoBaseName string = 'ams-mdemo'
 
 // below parameters are optionals and have default values
-@allowed(['UserAssigned','SystemAssigned'])
-@description('Type of identity to use for permissions model')
-param identityType string = 'UserAssigned'
+// @allowed(['UserAssigned','SystemAssigned'])
+// @description('Type of identity to use for permissions model')
+// param identityType string = 'UserAssigned'
 
 @description('Region of the orchestrator (workspace, central storage and compute).')
 param orchestratorRegion string = resourceGroup().location
 
-@description('The VM used for creating compute clusters in orchestrator and silos.')
-param compute1SKU string = 'Standard_DS4_v2'
+// @description('The VM used for creating compute clusters in orchestrator and silos.')
+// param compute1SKU string = 'Standard_DS4_v2'
 
 @description('Tags to curate the resources in Azure.')
 param tags object = {
@@ -54,6 +54,7 @@ module workspace './modules/azureml/open_azureml_workspace.bicep' = {
   name: '${demoBaseName}-aml-${orchestratorRegion}'
   scope: resourceGroup()
   params: {
+    defaultComputeName: 'monai-cluster'
     baseName: demoBaseName
     machineLearningName: 'aml-${demoBaseName}'
     machineLearningDescription: 'Azure ML demo workspace for federated learning (use for dev purpose only)'
@@ -62,31 +63,4 @@ module workspace './modules/azureml/open_azureml_workspace.bicep' = {
   }
 }
 
-// Create an orchestrator compute+storage pair and attach to workspace
-module orchestrator './modules/fl_pairs/open_compute_storage_pair.bicep' = {
-  name: '${demoBaseName}-openpair-orchestrator'
-  scope: resourceGroup()
-  params: {
-    machineLearningName: workspace.outputs.workspaceName
-    machineLearningRegion: orchestratorRegion
-
-    pairRegion: orchestratorRegion
-    tags: tags
-
-    pairBaseName: '${demoBaseName}-orch'
-
-    compute1Name: 'orchestrator-01' // let's not use demo base name in cluster name
-    compute1SKU: compute1SKU
-    computeNodes: 2
- 
-    // identity for permissions model
-    identityType: identityType
-
-    // set R/W permissions for orchestrator UAI towards orchestrator storage
-    applyDefaultPermissions: true
-  }
-  dependsOn: [
-    workspace
-  ]
-}
 
