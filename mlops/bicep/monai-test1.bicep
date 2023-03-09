@@ -57,6 +57,7 @@ module workspace './modules/azureml/open_azureml_workspace.bicep' = {
     defaultComputeName: 'monai-cluster'
     baseName: demoBaseName
     machineLearningName: 'aml-${demoBaseName}'
+    machineLearningFriendlyName: 'Monai WS'
     machineLearningDescription: 'Azure ML demo workspace for federated learning (use for dev purpose only)'
     location: orchestratorRegion
     tags: tags
